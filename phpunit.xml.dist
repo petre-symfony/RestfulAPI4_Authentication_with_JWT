@@ -14,6 +14,12 @@
         <env name="TEST_BASE_URL" value="http://localhost" />
         <!-- the value is the Doctrine connection string in DSN format -->
         <env name="DATABASE_URL" value="mysql://root:mysql@127.0.0.1/RESTfulAPI" />
+
+        <!-- ###+ lexik/jwt-authentication-bundle ### -->
+        <env name="JWT_SECRET_KEY" value="%kernel.project_dir%/config/jwt/private.pem"/>
+        <env name="JWT_PUBLIC_KEY" value="%kernel.project_dir%/config/jwt/public.pem"/>
+        <env name="JWT_PASSPHRASE" value="03fe2cd79effb696ab9d3cfa97acb87a"/>
+        <!-- ###- lexik/jwt-authentication-bundle ### -->
     </php>
 
     <testsuites>
