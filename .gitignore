@@ -7,6 +7,7 @@
 ###< symfony/framework-bundle ###
 /.idea/
 /bin/
+/config/jwt/private.pem
 
 ###> symfony/phpunit-bridge ###
 .phpunit
