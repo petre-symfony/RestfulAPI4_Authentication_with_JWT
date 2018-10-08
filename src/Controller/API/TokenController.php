@@ -34,7 +34,11 @@ class TokenController extends APIBaseController {
 		}
 
 		$token = $lexikEncoder
-			->encode(['username' => $user->getUsername()]);
+			->encode([
+					'username' => $user->getUsername() ,
+					'exp' => time() + 3600 // 1 hour expiration
+				])
+			;
 
 		return new JsonResponse([
 			'token' => $token
