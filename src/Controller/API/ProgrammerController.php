@@ -26,6 +26,7 @@ class ProgrammerController extends APIBaseController {
 	 * @Route("/api/programmers", methods="POST")
 	 */
 	public function newAction(Request $request, UserRepository $userRepository){
+		$this->denyAccessUnlessGranted('ROLE_USER');
 
 		$programmer = new Programmer();
 		$form = $this->createForm(ProgrammerType::class, $programmer);

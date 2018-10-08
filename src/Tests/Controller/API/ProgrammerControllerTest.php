@@ -311,5 +311,11 @@ EOF;
 		);
 	}
 
+	public function testRequiresAuthentication(){
+		$response = $this->client->post('/api/programmers', [
+			'body' => '[]'
+		]);
 
+		$this->assertEquals(401, $response->getStatusCode());
+	}
 }
