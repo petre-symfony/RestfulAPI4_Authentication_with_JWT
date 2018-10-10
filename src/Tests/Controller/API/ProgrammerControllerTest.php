@@ -12,7 +12,7 @@ class ProgrammerControllerTest extends ApiTestCase {
 		$this->createUser('weaverryan');
 	}
 
-	public function testPOSTProgrammer(){
+	public function testPOSTProgrammerWorks(){
 		$data = array(
 			'nickname' => 'ObjectOrienter',
 			'avatarNumber' => 5,
@@ -20,9 +20,13 @@ class ProgrammerControllerTest extends ApiTestCase {
 		);
 
 		//1) Post to create the programmer
-
+		$token = $this->getService('lexik_jwt_authentication.encoder')
+			->encode(['username' => 'weaverryan']);
 		$response = $this->client->post('/api/programmers', [
-			'body' => json_encode($data)
+			'body' => json_encode($data),
+			'headers' => [
+				'Authorization' => 'Bearer '.$token
+			]
 		]);
 
 		$this->assertEquals(201,  $response->getStatusCode());
