@@ -28,7 +28,6 @@ class ProgrammerControllerTest extends ApiTestCase {
 				'Authorization' => 'Bearer '.$token
 			]
 		]);
-
 		$this->assertEquals(201,  $response->getStatusCode());
 		$this->assertEquals('/api/programmers/ObjectOrienter',$response->getHeader('Location')[0]);
 		$finishedData = json_decode($response->getBody(), true);

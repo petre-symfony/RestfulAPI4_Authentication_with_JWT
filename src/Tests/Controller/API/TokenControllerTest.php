@@ -10,6 +10,8 @@ class TokenControllerTest extends ApiTestCase {
 		$response = $this->client->post('/api/tokens', [
 			'auth' => ['weaverryan', 'I<3Pizza']
 		]);
+
+		$this->debugResponse($response);
 		$this->assertEquals(200, $response->getStatusCode());
 		$this->asserter()->assertResponsePropertyExists($response, 'token');
 	}

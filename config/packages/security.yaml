@@ -9,6 +9,7 @@ security:
       entity:
         class: App\Entity\User
         property: username
+
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -23,10 +24,20 @@ security:
       logout:
         path: /logout
 
+    api:
+      pattern: ^/api/
+      anonymous: true
+      stateless: true
+      guard:
+        authenticators:
+        - App\Security\JWTTokenAuthenticator
+
 
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
     - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/, roles: ROLE_USER }
+    # allow anonymous API - if auth is needed, it's handled in the controller
+    - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
